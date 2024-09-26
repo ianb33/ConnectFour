@@ -1,5 +1,6 @@
 import random
 
+
 class Node:
     def __init__(self, node_type, value = None):
         self.node_type = node_type
@@ -49,8 +50,8 @@ class NeuralNetworkController:
         
         if node_type == "IF":
             node = LogicalNodes.IfThenElseNode()
-            condition = random.choice(["Opponent can win in column", "I can win in column", "MaximizeConnectedPieces() > 3"])
-            node.add_child(self.generate_condition_node(condition))
+            condition = random.choice(["OpponentCanWinInColumn", "ICanWinInColumn", "MaximizeConnectedPieces() > 3"])
+            node.add_child(self.generate_condition_node(condition, player_piece, opponent_piece))
             node.add_child(self.generate_random_node(depth + 1, max_depth, player_piece, opponent_piece))
             node.add_child(self.generate_random_node(depth + 1, max_depth, player_piece, opponent_piece))
         
@@ -70,16 +71,16 @@ class NeuralNetworkController:
         
         return node
 
-    def generate_condition_node(self, condition):
-        """
-        Generates a condition node based on the given condition string.
-        :param condition: Condition string
-        :return: A condition node
-        """
-        from NeuralNetwork import MoveGenNodes
-        # Placeholder implementation for condition nodes
-        # You can replace this with actual condition node implementations
-        return MoveGenNodes.GenerateMoveNode(column=random.randint(0, 6))  # Placeholder
+    def generate_condition_node(self, condition, player_piece, opponent_piece):
+        from NeuralNetwork import LogicalNodes, MoveGenNodes
+
+        if condition == "OpponentCanWinInColumn":
+            return LogicalNodes.OpponentCanWinInColumnNode(player_piece, opponent_piece)
+        elif condition == "ICanWinInColumn":
+            return LogicalNodes.ICanWinInColumnNode(player_piece, opponent_piece)
+        elif condition == "MaximizeConnectedPieces() > 3":
+            return LogicalNodes.MaximizeConnectedPiecesNode(player_piece, opponent_piece)
+        return MoveGenNodes.GenerateMoveNode(column=random.randint(0, 6))
     
 
     

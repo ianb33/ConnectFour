@@ -1,6 +1,6 @@
-import NeuralNet
+from NeuralNetwork.NeuralNet import Node
 
-class LogicalNode(NeuralNet.Node):
+class LogicalNode(Node):
     def __init__(self, logic_type):
         self.logic_type = logic_type  # The type of logical operation (IF, AND, OR, etc.)
         self.children = []  # List of child nodes
@@ -56,3 +56,32 @@ class NotNode(LogicalNode):
         # NOT logic only has one child, so negate the result of that child
         return not self.children[0].evaluate(board_state)
     
+class OpponentCanWinInColumnNode(Node):
+    def __init__(self, opponent_piece, player_piece):
+        self.opponent_piece = opponent_piece
+        self.player_piece = player_piece
+        super().__init__(node_type="Condition")
+
+    def evaluate(self, board_state):
+        # Implement logic to check if opponent can win in any column
+        pass
+
+class ICanWinInColumnNode(Node):
+    def __init__(self, opponent_piece, player_piece):
+        self.opponent_piece = opponent_piece
+        self.player_piece = player_piece
+        super().__init__(node_type="Condition")
+
+    def evaluate(self, board_state):
+        # Implement logic to check if AI can win in any column
+        pass
+
+class MaximizeConnectedPiecesNode(Node):
+    def __init__(self, opponent_piece, player_piece):
+        self.opponent_piece = opponent_piece
+        self.player_piece = player_piece
+        super().__init__(node_type="Condition")
+
+    def evaluate(self, board_state):
+        # Implement logic to check if maximizing connected pieces is greater than 3
+        pass

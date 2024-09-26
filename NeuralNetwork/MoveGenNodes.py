@@ -1,7 +1,7 @@
 import random
-from NeuralNetwork import NeuralNet
+from NeuralNetwork.NeuralNet import Node
 
-class GenerateMoveNode(NeuralNet.Node):
+class GenerateMoveNode(Node):
     def __init__(self, column):
         super().__init__(node_type="GenerateMove")
         self.column = column  # Column where the move will be generated
@@ -14,7 +14,7 @@ class GenerateMoveNode(NeuralNet.Node):
     def __repr__(self):
         return f"GenerateMoveNode(column={self.column})"
 
-class ScoreMoveNode(NeuralNet.Node):
+class ScoreMoveNode(Node):
     def __init__(self, player_piece, opponent_piece, weights=None):
         super().__init__(node_type="ScoreMove")
         self.player_piece = player_piece
