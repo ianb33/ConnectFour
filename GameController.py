@@ -1,6 +1,6 @@
 from UIController import UIController
 import Player, os
-from NeuralNetwork import NeuralNet
+from NeuralNetwork.NeuralNet import NeuralNetworkController
  
 class Board:
     board_state = []
@@ -209,7 +209,7 @@ while winner is None:
 if winner:
     print(f"The winner is {winner}")
     game_controller.board.printBoard()
-
-# neural_net = NeuralNet.NeuralNetworkController()
-# random_node = neural_net.generate_random_node(0, 3, player_piece, opponent_piece)
-# print(random_node)
+    
+neural_net = NeuralNetworkController()
+random_node = neural_net.generate_random_node(0, 3, player_piece, opponent_piece)
+print(random_node)
