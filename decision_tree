@@ -1,0 +1,31 @@
+digraph {
+	"IF-THEN-ELSE"
+	Condition
+	"IF-THEN-ELSE" -> Condition
+	AND
+	"IF-THEN-ELSE" -> AND
+	PreventOpponentFork
+	AND -> PreventOpponentFork
+	GenerateMove
+	PreventOpponentFork -> GenerateMove
+	CreateFork
+	AND -> CreateFork
+	GenerateMove
+	CreateFork -> GenerateMove
+	OR
+	"IF-THEN-ELSE" -> OR
+	NOT
+	OR -> NOT
+	CenterControl
+	NOT -> CenterControl
+	GenerateMove
+	CenterControl -> GenerateMove
+	Condition
+	NOT -> Condition
+	GenerateMove
+	Condition -> GenerateMove
+	MaximizeConnectedPieces
+	OR -> MaximizeConnectedPieces
+	GenerateMove
+	MaximizeConnectedPieces -> GenerateMove
+}
